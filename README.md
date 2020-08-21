@@ -8,10 +8,16 @@ I was running the following:
 It uses a command line call to check the signal strength (%), transmit and receive (Mbps) rate of your network.
 
 To use this project:
-  1) save signal-check.py & read_write_output.py into a folder
-  2) create a subfolder called "python_work"
-  3) double-click signal-check.py
-  4) wait
-  
-  
-It should create the file "signal_output.csv" inside the same folder as signal-check.py
+  1) Create a folder called "signal-check"
+  2) In the signal-check folder, create the following folders:
+    a) CSV-file
+    b) Input-file
+    c) Json-file
+    d) Source-code
+  3) Inside of Source-code, save signal-check.py & get_wifi_info.py
+  4) double click on signal-check.py
+
+After 60 seconds, the .csv will be in the CSV-file folder. Also, a .json file will be in the Json-file folder.
+
+Note: I know that this is still an evolving project with a lot of possible improvements. I'll gradually make
+improvements as my comfort with Python improves. Thank you for your patience :)
