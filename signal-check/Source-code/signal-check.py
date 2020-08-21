@@ -45,7 +45,7 @@ with open( file_name, 'a' ) as f:
 
 
 
-while x <= 5:
+while x <= 60:
 	local = time.localtime()
 	display = time.strftime( "%I:%M:%S %p", local )
 	os.system( "netsh wlan show interfaces > ../Input-file/interface.txt" )
