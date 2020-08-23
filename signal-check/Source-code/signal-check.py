@@ -1,7 +1,9 @@
 import time
 import os
 import json
+from json_manipulation import write_to_json
 from get_wifi_info import read_write_output
+
 
 """******************************************************************
 Author: 			Andrew A. Anderson
@@ -33,8 +35,13 @@ signal_list = []
 transmit_list = []
 receive_list = []
 
+runtime_length = input( "How many seconds do you want the program to run?\n>> " )
+
+running = int( runtime_length )
 
 x = 1
+
+
 file_name = '../CSV-file/signal_output.csv'
 
 read_file = '../Input-file/interface.txt'
@@ -44,31 +51,29 @@ with open( file_name, 'a' ) as f:
 	f.close()
 
 
-
-while x <= 60:
+print( f"Running for {running} seconds: \n", flush = True)
+time.sleep( 1 )
+while running >= x:
 	local = time.localtime()
 	display = time.strftime( "%I:%M:%S %p", local )
 	os.system( "netsh wlan show interfaces > ../Input-file/interface.txt" )
+	""" retrieve the signal strength, transmit rate, and receive rate from your Wifi """
 	strength, receive, transmit = read_write_output( display, read_file, file_name )
 	time.sleep( 1 )
-	x += 1
+	running = running - 1
 	signal_list.append( strength )
 	receive_list.append( receive )
 	transmit_list.append( transmit )
+	if running % 5 == 0 and running != 0:
+		print( f"\t{running} seconds remaining", flush = True)
+
+print( "\nsignal_output.csv created.", flush = True )
+time.sleep( 3 )
 
 
-
-
-with open( json_file_path, 'a' ) as json_f:
-	json_f.write( "Signal strengths (%):\t")
-	json.dump( signal_list, json_f )
-	json_f.write( "\n" )
-
-	json_f.write( f"Receive rate (Mbps):\t")
-	json.dump( receive_list, json_f )
-	json_f.write( "\n" )
-
-	json_f.write( f"Transmit rate (Mbps):\t")
-	json.dump( transmit_list, json_f )
+print( "\nSaving to json_file.json....", flush = True )
+time.sleep( 3 )
+write_to_json( signal_list, receive_list, transmit_list, json_file_path)
+print( "\nSaved to json_file.json.\n\nGoodbye.", flush = True )
 
 
