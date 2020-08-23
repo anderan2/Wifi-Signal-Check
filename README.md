@@ -14,7 +14,7 @@ To use this project:
     b) Input-file
     c) Json-file
     d) Source-code
-  3) Inside of Source-code, save signal-check.py & get_wifi_info.py
+  3) Inside of Source-code, save *.py
   4) double click on signal-check.py
 
 After 60 seconds, the .csv will be in the CSV-file folder. Also, a .json file will be in the Json-file folder.
